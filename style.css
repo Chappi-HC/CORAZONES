@@ -1,0 +1,116 @@
+/* Estilos generales del cuerpo de la página */
+body {
+    margin: 0;
+    overflow: hidden; /* Oculta barras de desplazamiento si los corazones se salen */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0d0d1a; /* Fondo muy oscuro, casi negro */
+    color: #fff; /* Texto blanco por defecto */
+}
+
+/* El contenedor principal de nuestra galaxia */
+.galaxy-background {
+    position: absolute;
+    width: 100vw; /* Ancho de toda la ventana */
+    height: 100vh; /* Alto de toda la ventana */
+    background: radial-gradient(circle at center, rgba(30, 0, 50, 0.8) 0%, rgba(10, 0, 20, 0.9) 70%, rgba(0,0,0,1) 100%);
+    /* Puedes añadir una imagen de fondo de galaxia si quieres: */
+    /* background-image: url('https://via.placeholder.com/1500x800/0a0a2a/ffffff?text=Galaxia'); */
+    /* background-size: cover; */
+    /* background-position: center; */
+}
+
+/* Estilo para los corazones pequeños flotantes */
+.heart {
+    position: absolute;
+    font-size: 3em; /* ¡Corazones más grandes! */
+    color: #FF0000; /* ¡Rojos! */
+    cursor: pointer;
+    /* Nueva animación de flotar más compleja */
+    animation: floatAndGlow 15s infinite ease-in-out alternate; 
+    opacity: 0.8;
+    text-shadow: 0 0 15px rgba(255,0,0,0.8), 0 0 25px rgba(255,0,0,0.5); /* Sombra más intensa y brillante */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Transición para hover y desaparición */
+}
+
+.heart:hover {
+    transform: scale(1.3) rotate(5deg); /* Aumenta y rota un poco al pasar el ratón */
+    opacity: 1;
+}
+
+/* El gran corazón central */
+.central-heart {
+    position: absolute;
+    font-size: 10em; /* ¡Mucho más grande! */
+    color: #FF0000; /* ¡Rojo brillante! */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Para centrarlo perfectamente */
+    text-shadow: 0 0 30px rgba(255,0,0,1), 0 0 50px rgba(255,0,0,0.8), 0 0 70px rgba(255,0,0,0.5); /* Sombra muy brillante */
+    animation: pulseGlow 2s infinite alternate; /* Animación de pulsación y brillo */
+    z-index: 10; /* Asegura que esté encima de los otros corazones */
+    pointer-events: none; /* No interactuable por defecto, es solo visual */
+}
+
+/* Animación de flotar y brillar para los corazones pequeños */
+@keyframes floatAndGlow {
+    0% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.8; }
+    25% { transform: translateY(-30px) translateX(20px) scale(1.05); opacity: 0.9; }
+    50% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.8; }
+    75% { transform: translateY(30px) translateX(-20px) scale(0.95); opacity: 0.7; }
+    100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.8; }
+}
+
+/* Animación de pulsación y brillo para el corazón central */
+@keyframes pulseGlow {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        text-shadow: 0 0 30px rgba(255,0,0,1), 0 0 50px rgba(255,0,0,0.8), 0 0 70px rgba(255,0,0,0.5);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.05); /* Ligeramente más grande */
+        text-shadow: 0 0 40px rgba(255,0,0,1), 0 0 60px rgba(255,0,0,0.9), 0 0 80px rgba(255,0,0,0.6); /* Brillo más intenso */
+    }
+}
+
+/* Contenedor de la frase (sin cambios, a menos que quieras ajustar algo aquí también) */
+#quote-display {
+    position: fixed; /* Fijo en la pantalla */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el div */
+    background-color: rgba(25, 25, 50, 0.95); /* Fondo semitransparente oscuro */
+    border: 2px solid #ff0000; /* Borde rojo */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255,0,0,0.7); /* Sombra brillante roja */
+    text-align: center;
+    max-width: 80%;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    transition: opacity 0.5s ease-in-out; /* Transición suave para aparecer/desaparecer */
+}
+
+#quote-display.hidden {
+    opacity: 0;
+    pointer-events: none; /* Deshabilita interacciones cuando está oculto */
+}
+
+#quote-display p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #e0e0e0;
+}
+
+#close-quote {
+    background-color: #FF0000; /* Botón rojo */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+#close-quote:hover {
+    background-color: #cc0000; /* Rojo más oscuro al pasar el ratón */
+}
